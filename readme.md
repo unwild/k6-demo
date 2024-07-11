@@ -49,20 +49,19 @@ For this command, we will use the web dashboard.
 
 Run the command : `k6 run --out 'web-dashboard' k6/progressive-load-testing.js`
 
-> To get smoother results on dashboard, set K6_WEB_DASHBOARD_PERIOD environment variable to 1s (default is 10s)  
+> To get smoother results on dashboard, set K6_WEB_DASHBOARD_PERIOD env variable to 1s (default 10s)  
 > To automatically open dashboard, set K6_WEB_DASHBOARD_OPEN to true  
 > Powershell : `$env:K6_WEB_DASHBOARD_PERIOD="1s"; $env:K6_WEB_DASHBOARD_OPEN="true";`
 
 
 ## Lifecycle, request params and checks
 
-[Lifecyle doc](https://k6.io/docs/using-k6/test-lifecycle/#overview-of-the-lifecycle-stages)
 
-In this example, we will use lifecycle to handle "authentication".
+In this example, we will use [a lifecyle function](https://k6.io/docs/using-k6/test-lifecycle/#overview-of-the-lifecycle-stages) to handle "authentication".
 The setup is called once, and is used to set up data.
 
 In this case, I'm using the setup to get a token from the API. That means that all the virtual users will share the same token.
 
-I'm also using check to make assertions on the API response.
+I'm also using [checks](https://k6.io/docs/using-k6/checks/) to make assertions on the API response.
 
 `k6 run k6/lifecycle-params-and-check.js`
