@@ -15,6 +15,8 @@ type SafeContext struct {
 
 var context SafeContext
 
+const token = "f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9"
+
 func main() {
 
 	srv := http.NewServeMux()
@@ -105,4 +107,23 @@ func HandleRoutes(srv *http.ServeMux) {
 		w.WriteHeader(http.StatusCreated)
 		w.Write([]byte("OK"))
 	})
+
+	srv.HandleFunc("GET /token", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(token))
+	})
+
+	srv.HandleFunc("GET /bank/info", func(w http.ResponseWriter, r *http.Request) {
+
+		headerToken := r.Header.Get("Authorization")
+
+		if headerToken != token {
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		w.WriteHeader(http.StatusFound)
+		w.Write([]byte("Jackpot baby"))
+	})
+
 }
