@@ -31,3 +31,25 @@ This value represents the response time below which 9x% of requests fall. In oth
 
 > You can check that the API posts count with a GET to http://localhost:7777/count
 To reset the counter, send a DELETE to http://localhost:7777 or restart the API.
+
+
+## Stages
+
+Now we will look at stages. 
+It's a way to spawn virtual users in, you guessed it, stages.
+
+`  stages: [  
+    { duration: '1m30s', target: 150 },  
+    { duration: '10s', target: 0 }  
+  ],`
+  
+This code will ramp up vus from 0 to 150 in 1m30, and then drop to 0 in 10s.
+
+For this command, we will use the web dashboard.
+
+Run the command : `k6 run --out 'web-dashboard' k6/progressive-load-testing.js`
+
+> To get smoother results on dashboard, set K6_WEB_DASHBOARD_PERIOD environment variable to 1s (default is 10s) 
+> To automatically open dashboard, set K6_WEB_DASHBOARD_OPEN to true
+> Powershell : `$env:K6_WEB_DASHBOARD_PERIOD="1s"; $env:K6_WEB_DASHBOARD_OPEN="true";`
+

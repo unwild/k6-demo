@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"io"
 	"log"
 	"net/http"
 	"sync"
@@ -60,10 +61,14 @@ func HandleRoutes(srv *http.ServeMux) {
 		w.Write([]byte("Deleted entries"))
 	})
 
-	srv.HandleFunc("POST /fast/{data}", func(w http.ResponseWriter, r *http.Request) {
+	srv.HandleFunc("POST /fast", func(w http.ResponseWriter, r *http.Request) {
 
-		data := r.PathValue("data")
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			panic(err)
+		}
 
+		data := string(body)
 		context.Lock()
 		defer context.Unlock()
 
@@ -73,9 +78,14 @@ func HandleRoutes(srv *http.ServeMux) {
 		w.Write([]byte("OK"))
 	})
 
-	srv.HandleFunc("POST /linear/{data}", func(w http.ResponseWriter, r *http.Request) {
+	srv.HandleFunc("POST /linear", func(w http.ResponseWriter, r *http.Request) {
 
-		data := r.PathValue("data")
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			panic(err)
+		}
+
+		data := string(body)
 
 		context.Lock()
 		defer context.Unlock()

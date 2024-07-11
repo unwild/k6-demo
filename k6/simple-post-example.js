@@ -8,7 +8,7 @@ export const options = {
   iterations: 10000,
 };
 
-export default function () {
-  const response = http.post(`http://localhost:7777/fast/${randomString(10)}`, ""); // Change to linear to see diff
+export default function () {  
+  http.post('http://localhost:7777/fast', randomString(6)); // Change to linear to see diff
 }
 
