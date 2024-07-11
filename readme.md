@@ -49,8 +49,8 @@ For this command, we will use the web dashboard.
 
 Run the command : `k6 run --out 'web-dashboard' k6/progressive-load-testing.js`
 
-> To get smoother results on dashboard, set K6_WEB_DASHBOARD_PERIOD environment variable to 1s (default is 10s) 
-> To automatically open dashboard, set K6_WEB_DASHBOARD_OPEN to true
+> To get smoother results on dashboard, set K6_WEB_DASHBOARD_PERIOD environment variable to 1s (default is 10s)  
+> To automatically open dashboard, set K6_WEB_DASHBOARD_OPEN to true  
 > Powershell : `$env:K6_WEB_DASHBOARD_PERIOD="1s"; $env:K6_WEB_DASHBOARD_OPEN="true";`
 
 
