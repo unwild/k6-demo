@@ -77,4 +77,13 @@ In this exemple, you will find in the scenario file these lines :
 `const connectionTimeTrend = new Trend('connection_time');` this line is used to create a new custom metric
 `connectionTimeTrend.add(response.timings.connecting);` this line is used to insert a data point to this metric
 
-When the test is finished running, you will be able to see the custom metrics as the first line of the result table.
+When the test is finished running, you will be able to see your custom metrics in the result table.
+
+### Comparing endpoints
+
+You can also use the custom metrics to compare two endpoints performance. It can be useful when refactoring for performance.
+
+Run the command : `k6 run k6/custom-metrics-compare.js`
+
+(Nice blog post about formatting output to compare many endpoints performance)[https://medium.com/@monish.correia/how-to-create-endpoint-wise-summary-for-each-requests-in-k6-script-d5e7c63f58fd]
+
