@@ -8,7 +8,7 @@
 ## Run dummy api
 
 If go is installed:  `go run .`
-Else, there is a windows executable at /bin/dummy.exe (run from cmd).
+Else, there is a windows executable at ./bin/dummy.exe (run from cmd).
 
 ## Demo
 
