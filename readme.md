@@ -64,4 +64,17 @@ In this case, I'm using the setup to get a token from the API. That means that a
 
 I'm also using [checks](https://k6.io/docs/using-k6/checks/) to make assertions on the API response.
 
-`k6 run k6/lifecycle-params-and-check.js`
+Run the command : `k6 run k6/lifecycle-params-and-check.js`
+
+## Custom metrics
+
+We will now take a really simple example for a custom metrics.
+
+Run the command : `k6 run k6/custom-metrics.js`
+
+In this exemple, you will find in the scenario file these lines : 
+
+`const connectionTimeTrend = new Trend('connection_time');` this line is used to create a new custom metric
+`connectionTimeTrend.add(response.timings.connecting);` this line is used to insert a data point to this metric
+
+When the test is finished running, you will be able to see the custom metrics as the first line of the result table.
